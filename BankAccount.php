@@ -54,6 +54,7 @@
 
         }
 
+
         public function Lock(){
 
             $this->Locked = true;
@@ -74,5 +75,6 @@
             array_push( $this->Audit, array( "ACCOUNT UNLOCKED", $unlockedDate->format('c') ) );
 
         }
+
     }
 
