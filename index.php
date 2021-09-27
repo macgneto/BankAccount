@@ -3,15 +3,28 @@
 class Bank {
 
 
-//    protected int $test;
+    private $Balance = 550;
 
-    public function test($test){
+    public function WithDraw($amount){
 
-        echo $test;
+        $x = $this->Balance - $amount;
+        echo $x;
+
     }
-
-
 }
-$number = new Bank();
-$number-> test("120");
 
+$account1 = new Bank();
+$account1->WithDraw(200);
+
+
+echo "</br>";
+
+$account2 = new Bank();
+$account2->WithDraw(100);
+
+// Testing of this is an instance of interface
+//if ( this instanceof fileInt) {
+//
+//    this.Read("input");
+//
+//}
