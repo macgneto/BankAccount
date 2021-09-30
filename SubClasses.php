@@ -74,9 +74,98 @@
 
         }
 
+    }
 
 
+    //==============================[ Trait SavingPlus]=================================//
+    trait SavingsPlus{
+
+        private $MonthlyFee = 20;
+
+        public $Package = "holiday insurance";
+
+        //Method
+
+        public function AddedBonus(){
+
+            echo "Hello ". $this->FirstName ." ". $this->LastName ." for &pound;". $this->MonthlyFee ." a month you get". $this->Package;
+
+        }
+
+    }
+
+    //==============================[ Interface AccountPlus]=================================//
+    interface AccountPlus{
+
+        public function AddedBonus();
+
+    }
 
 
+    //==============================[ class Savings ]=================================//
+    class Savings extends BankAccount implements AccountPlus {
+
+        use SavingsPlus;
+
+        public $PocketBook = array();
+
+        public $DepositBook = array();
+
+        // Methods
+
+        public function OrderNewBook(){
+
+            $orderTime = new DateTime();
+
+            array_push( $this->PocketBook, "Ordered new pocket book on: ". $orderTime->format('c') );
+
+        }
+
+        public function OrderNewDepositBook(){
+
+            $orderTime = new DateTime();
+
+                $orderTime = new DateTime();
+
+                array_push( $this-> DepositBook, "Ordered new book on :". $orderTime->format('c') );
+
+        }
+
+    }
+
+    //==============================[ Interface Debit]=================================//
+    class Debit extends BankAccount  implements AccountPlus {
+
+        use SavingsPlus;
+
+        private $CardNumber;
+
+        private $SecurityCode;
+
+        private $PinNumber;
+
+        //Methods
+
+        public function Validate(){
+
+            $valDate = new DateTime();
+
+            $this->CardNumber = rand(1000, 9999) ."-". rand(1000, 9999) ."-". rand(1000, 9999) ."-". rand(1000-9999);
+
+            $this->SecurityCode = rand(100 - 999);
+
+            array_push( $this->Audit, array( "VALIDATED CARD", $valDate->format('c'), $this->CardNumber, $this->SecuirityCode, $this->PinNumber ) );
+
+        }
+
+        public function ChangePin( $newPin ){
+
+            $pinChange = new DateTime();
+
+            $this->PinNumber = $newPin;
+
+            array_push( $this->Audit, array( "PIN CHANGED", $pinChange->format('c'), $this->PinNumber ) );
+
+        }
 
     }
